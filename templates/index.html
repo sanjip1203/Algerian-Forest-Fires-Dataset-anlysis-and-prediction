@@ -1,1 +1,101 @@
-<h1>Welcome to Homepage<h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Prediction</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #007bff;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+       <h1>FWI Prediction</h1>
+   
+       <!-- Main Input For Receiving Query to our ML -->
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+           <input type="text" name="Temperature" placeholder="Temperature" required="required" />
+           <input type="text" name="RH" placeholder="RH" required="required" />
+           <input type="text" name="Ws" placeholder="Ws" required="required" />
+           <input type="text" name="Rain" placeholder="Rain" required="required" />
+           <input type="text" name="FFMC" placeholder="FFMC" required="required" />
+           <input type="text" name="DMC" placeholder="DMC" required="required" />
+           <input type="text" name="ISI" placeholder="ISI" required="required" />
+           <input type="text" name="Classes" placeholder="Classes" required="required" />
+           <input type="text" name="Region" placeholder="Region" required="required" />
+   
+           <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+       </form>
+       <h2>
+           THE FWI prediction is {{result}}
+       </h2>
+    </div>
+</body>
+</html>

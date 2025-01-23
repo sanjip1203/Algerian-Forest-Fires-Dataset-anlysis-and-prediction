@@ -11,10 +11,10 @@ app=application
 ridge_model=pickle.load(open('ridge.pkl','rb'))
 standard_scaler=pickle.load(open('scaler.pkl','rb'))
 
-## Route for home page
+## Route for index page
 @app.route('/')
 def index():
-    return render_template('home.html')
+    return render_template('index.html')
 
 @app.route('/predictdata',methods=['GET','POST'])
 def predict_datapoint():
@@ -32,10 +32,10 @@ def predict_datapoint():
         new_data_scaled=standard_scaler.transform([[Temperature,RH,Ws,Rain,FFMC,DMC,ISI,Classes,Region]])
         result=ridge_model.predict(new_data_scaled)
 
-        return render_template('home.html',result=result[0])
+        return render_template('index.html',result=result[0])
 
     else:
-        return render_template('home.html')
+        return render_template('index.html')
 
 
 if __name__=="__main__":
